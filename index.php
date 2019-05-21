@@ -11,18 +11,27 @@
 	
 	spl_autoload_register("autoloadClass");
 	
+	// Załóżmy, że to jakaś funkcja i otrzymaliśmy wynik do zmiennej
+	$pierwszaZmienna = 33;
+	$drugaZmienna = 2;
+
+	$data = [
+		'pierwszaZmienna' => $pierwszaZmienna,
+		'drugaZmienna' => $drugaZmienna
+	];
+	
 	// Router
 	$router = new AltoRouter();
 	$view = new View();
 	
-	$router->map('GET', '/', function() use($view){
+	$router->map('GET', '/', function() use($view, $data){
 		$view->render([
 			'page' => 'test',
 			'title' => 'Mój Panel',
 			'zmienna' => 'uu',
 			'servers' => [
-				'normalCount' => 2,
-				'pendingCount' => 0
+				'normalCount' => $data['pierwszaZmienna'],
+				'pendingCount' => $data['drugaZmienna']
 			]
 		]);
 	});
